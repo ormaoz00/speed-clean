@@ -117,7 +117,7 @@ function initBeforeAfterSliders() {
 
     function updatePosition(x) {
       const rect = slider.getBoundingClientRect();
-      let percentage = ((x - rect.left) / rect.width) * 100;
+      let percentage = ((rect.right - x) / rect.width) * 100;
       percentage = Math.max(5, Math.min(95, percentage));
       before.style.width = percentage + '%';
       handle.style.right = percentage + '%';
