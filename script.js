@@ -156,6 +156,7 @@ function initBeforeAfterSliders() {
 
 // --- Form Handling ---
 function initFormHandling() {
+  const WEBHOOK_URL = 'https://hook.eu1.make.com/b4u7o3jd80luh399jw8bov437frivaox';
   const forms = document.querySelectorAll('#heroForm, #contactForm');
 
   forms.forEach(form => {
@@ -164,26 +165,41 @@ function initFormHandling() {
 
       const formData = new FormData(form);
       const data = Object.fromEntries(formData.entries());
+      data.form_source = form.id;
 
       const btn = form.querySelector('button[type="submit"]');
       const originalText = btn.textContent;
       btn.textContent = 'שולח...';
       btn.disabled = true;
 
-      // Simulate submission (replace with real endpoint)
-      setTimeout(() => {
-        btn.textContent = 'נשלח בהצלחה! ✓';
-        btn.style.background = '#10b981';
-
+      fetch(WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      })
+      .then(response => {
+        if (response.ok) {
+          btn.textContent = 'נשלח בהצלחה! ✓';
+          btn.style.background = '#10b981';
+          setTimeout(() => {
+            form.reset();
+            btn.textContent = originalText;
+            btn.style.background = '';
+            btn.disabled = false;
+          }, 3000);
+        } else {
+          throw new Error('Server error');
+        }
+      })
+      .catch(() => {
+        btn.textContent = 'שגיאה, נסו שוב';
+        btn.style.background = '#ef4444';
         setTimeout(() => {
-          form.reset();
           btn.textContent = originalText;
           btn.style.background = '';
           btn.disabled = false;
         }, 3000);
-      }, 1000);
-
-      console.log('Form submitted:', data);
+      });
     });
   });
 }
