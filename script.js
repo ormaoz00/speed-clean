@@ -181,12 +181,8 @@ function initFormHandling() {
         if (response.ok) {
           btn.textContent = 'נשלח בהצלחה! ✓';
           btn.style.background = '#10b981';
-          setTimeout(() => {
-            form.reset();
-            btn.textContent = originalText;
-            btn.style.background = '';
-            btn.disabled = false;
-          }, 3000);
+          form.reset();
+          window.location.href = '/thank-you/';
         } else {
           throw new Error('Server error');
         }
