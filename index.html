@@ -1,653 +1,762 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-  <!-- Google Tag Manager -->
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-K5Q3H2Q8');</script>
-  <!-- End Google Tag Manager -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ספידקליין | ניקוי מזגנים מקצועי בשרון והמרכז</title>
-  <meta name="description" content="ספידקליין - ניקוי וחיטוי מזגנים מקצועי בשרון והמרכז. ניקוי עמוק, חיטוי אנטי-בקטריאלי, שירות מהיר ואמין. התקשרו עכשיו!" />
+  <title>SpeedClean | ניקוי מזגנים מקצועי – שרון והמרכז</title>
+  <meta name="description" content="ניקוי וחיטוי מזגנים מקצועי בשרון והמרכז. שירות מהיר, חומרים בטוחים לילדים, אחריות מלאה. מעל 3,000 מזגנים נוקו." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── Reset ─────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    /* ─── Tokens ─────────────────────────────────────────── */
+    :root {
+      --bg:           #F8FAFC;
+      --surface:      #FFFFFF;
+      --text:         #0F172A;
+      --muted:        #64748B;
+      --accent:       #0EA5E9;
+      --accent-dark:  #0284C7;
+      --accent-light: #E0F2FE;
+      --wa:           #25D366;
+      --border:       #E2E8F0;
+      --shadow:       0 1px 3px rgba(0,0,0,.06), 0 4px 16px rgba(0,0,0,.04);
+      --shadow-md:    0 4px 24px rgba(0,0,0,.10);
+      --radius:       12px;
+      --max:          1080px;
+    }
+
+    /* ─── Base ───────────────────────────────────────────── */
+    body {
+      font-family: 'Heebo', sans-serif;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--text);
+      background: var(--bg);
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    /* ─── Utilities ──────────────────────────────────────── */
+    .container {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .section { padding: 88px 0; }
+    .section-tag {
+      display: inline-block;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: .05em;
+      color: var(--accent-dark);
+      background: var(--accent-light);
+      padding: 4px 14px;
+      border-radius: 100px;
+      margin-bottom: 16px;
+    }
+    .section-heading {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 700;
+      line-height: 1.25;
+      margin-bottom: 12px;
+    }
+    .section-sub {
+      font-size: 17px;
+      color: var(--muted);
+      max-width: 540px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      transition: background .2s, transform .15s, box-shadow .2s;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+    .btn-primary:hover { background: var(--accent-dark); box-shadow: 0 6px 20px rgba(14,165,233,.35); }
+    .btn-wa {
+      background: var(--wa);
+      color: #fff;
+    }
+    .btn-wa:hover { background: #1ebe5d; box-shadow: 0 6px 20px rgba(37,211,102,.35); }
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1.5px solid var(--border);
+    }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ─── Reveal animation ───────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .55s ease, transform .55s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ─── Navbar ─────────────────────────────────────────── */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(248,250,252,.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid transparent;
+      transition: border-color .25s, box-shadow .25s;
+    }
+    .navbar.scrolled {
+      border-color: var(--border);
+      box-shadow: 0 2px 12px rgba(0,0,0,.06);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      gap: 32px;
+    }
+    .logo {
+      font-size: 20px;
+      font-weight: 900;
+      letter-spacing: -.5px;
+      flex-shrink: 0;
+    }
+    .logo .speed { color: var(--accent); }
+    .logo .clean { color: var(--text); }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      list-style: none;
+    }
+    .nav-links a {
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--muted);
+      transition: color .2s, background .2s;
+    }
+    .nav-links a:hover { color: var(--text); background: var(--accent-light); }
+    .nav-links .nav-cta {
+      background: var(--accent);
+      color: #fff;
+      padding: 8px 18px;
+    }
+    .nav-links .nav-cta:hover { background: var(--accent-dark); }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: transform .25s, opacity .25s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* ─── Hero ───────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      padding: 100px 0 88px;
+      text-align: center;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% -10%, var(--accent-light) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--accent-dark);
+      background: var(--accent-light);
+      padding: 6px 16px;
+      border-radius: 100px;
+      margin-bottom: 28px;
+    }
+    .hero h1 {
+      font-size: clamp(36px, 6vw, 62px);
+      font-weight: 900;
+      line-height: 1.15;
+      letter-spacing: -.5px;
+      margin-bottom: 20px;
+      max-width: 760px;
+      margin-inline: auto;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--accent);
+    }
+    .hero p {
+      font-size: clamp(17px, 2.2vw, 20px);
+      color: var(--muted);
+      font-weight: 300;
+      max-width: 540px;
+      margin: 0 auto 12px;
+    }
+    .hero-trust {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 40px;
+    }
+    .hero-trust strong { color: var(--text); font-weight: 500; }
+    .hero-ctas {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .hero-ctas .btn { font-size: 17px; padding: 16px 32px; }
+
+    /* ─── Services ───────────────────────────────────────── */
+    .services { background: var(--surface); }
+    .services-header { text-align: center; margin-bottom: 52px; }
+    .services-header .section-sub { margin-inline: auto; }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+    .service-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px 28px;
+      transition: box-shadow .2s, transform .2s, border-color .2s;
+    }
+    .service-card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-3px);
+      border-color: var(--accent);
+    }
+    .service-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--accent-light);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .service-icon svg { color: var(--accent); }
+    .service-card h3 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .service-card p {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ─── Why Us ─────────────────────────────────────────── */
+    .why { background: var(--bg); }
+    .why-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .why-header { margin-bottom: 0; }
+    .why-header .section-sub { margin-top: 12px; }
+    .why-list { display: flex; flex-direction: column; gap: 28px; }
+    .why-item { display: flex; gap: 18px; align-items: flex-start; }
+    .why-num {
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      background: var(--accent);
+      color: #fff;
+      border-radius: 50%;
+      font-size: 14px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 2px;
+    }
+    .why-item h4 { font-size: 17px; font-weight: 700; margin-bottom: 4px; }
+    .why-item p { font-size: 15px; color: var(--muted); }
+
+    /* ─── Reviews ────────────────────────────────────────── */
+    .reviews { background: var(--surface); }
+    .reviews-header { text-align: center; margin-bottom: 52px; }
+    .stars { color: #FBBF24; font-size: 22px; letter-spacing: 2px; margin-bottom: 4px; }
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .review-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+    }
+    .review-stars { color: #FBBF24; font-size: 14px; margin-bottom: 12px; }
+    .review-card blockquote {
+      font-size: 15px;
+      color: var(--text);
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+    .review-author {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    /* ─── FAQ ────────────────────────────────────────────── */
+    .faq { background: var(--bg); }
+    .faq-inner {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .faq-header { text-align: center; margin-bottom: 44px; }
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+    }
+    .faq-q {
+      width: 100%;
+      background: none;
+      border: none;
+      font-family: inherit;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text);
+      text-align: right;
+      padding: 20px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      cursor: pointer;
+    }
+    .faq-q svg {
+      flex-shrink: 0;
+      transition: transform .25s;
+      color: var(--accent);
+    }
+    .faq-q.open svg { transform: rotate(180deg); }
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .35s ease, padding .35s ease;
+    }
+    .faq-a p {
+      font-size: 15px;
+      color: var(--muted);
+      padding-bottom: 20px;
+    }
+
+    /* ─── Contact ────────────────────────────────────────── */
+    .contact { background: var(--surface); }
+    .contact-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+    .contact-info { padding-top: 8px; }
+    .contact-info .section-sub { margin-top: 12px; margin-bottom: 36px; }
+    .contact-methods { display: flex; flex-direction: column; gap: 16px; }
+    .contact-method {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 16px;
+      font-weight: 500;
+    }
+    .contact-method-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--accent-light);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--accent-dark);
+      font-size: 18px;
+    }
+    .contact-form {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 36px 32px;
+    }
+    .form-group { margin-bottom: 18px; }
+    .form-group label {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: var(--text);
+    }
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 15px;
+      color: var(--text);
+      background: var(--surface);
+      transition: border-color .2s;
+      outline: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus { border-color: var(--accent); }
+    .form-submit {
+      width: 100%;
+      justify-content: center;
+      margin-top: 8px;
+    }
+
+    /* ─── Footer ─────────────────────────────────────────── */
+    .footer {
+      background: var(--text);
+      color: rgba(255,255,255,.6);
+      text-align: center;
+      padding: 36px 24px;
+      font-size: 14px;
+    }
+    .footer .logo-f {
+      font-size: 20px;
+      font-weight: 900;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+    .footer .logo-f span { color: var(--accent); }
+
+    /* ─── Floating WhatsApp ──────────────────────────────── */
+    .wa-float {
+      position: fixed;
+      bottom: 24px;
+      left: 24px;
+      z-index: 200;
+      width: 56px;
+      height: 56px;
+      background: var(--wa);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(37,211,102,.45);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .wa-float:hover { transform: scale(1.08); box-shadow: 0 6px 28px rgba(37,211,102,.55); }
+    .wa-float svg { color: #fff; }
+
+    /* ─── Mobile ─────────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .section { padding: 64px 0; }
+
+      .hamburger { display: flex; }
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 64px;
+        right: 0; left: 0;
+        background: var(--surface);
+        border-bottom: 1px solid var(--border);
+        flex-direction: column;
+        padding: 16px 24px 24px;
+        gap: 4px;
+        box-shadow: 0 8px 24px rgba(0,0,0,.08);
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: 10px 16px; font-size: 16px; border-radius: 8px; }
+      .nav-links .nav-cta { margin-top: 8px; text-align: center; }
+
+      .hero { padding: 72px 0 64px; }
+
+      .why-inner { grid-template-columns: 1fr; gap: 40px; }
+      .contact-inner { grid-template-columns: 1fr; gap: 40px; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-ctas { flex-direction: column; align-items: center; }
+      .hero-ctas .btn { width: 100%; justify-content: center; }
+      .contact-form { padding: 24px 20px; }
+    }
+  </style>
 </head>
 <body>
-  <!-- Google Tag Manager (noscript) -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K5Q3H2Q8"
-  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-  <!-- End Google Tag Manager (noscript) -->
-  <!-- Top Bar -->
-  <div class="top-bar">
-    <div class="container top-bar-inner">
-      <span class="top-bar-text">🕐 ראשון–שישי 08:00–19:00</span>
-      <div class="top-bar-actions">
-        <a href="tel:0501234567" class="top-bar-phone">📞 050-123-4567</a>
-        <a href="https://wa.me/972501234567" class="top-bar-whatsapp" target="_blank" rel="noopener">WhatsApp</a>
-      </div>
-    </div>
-  </div>
 
-  <!-- Navigation -->
+  <!-- Navbar -->
   <nav class="navbar" id="navbar">
     <div class="container nav-inner">
-      <a href="#" class="logo">
-        <span class="logo-speed">Speed</span><span class="logo-clean">Clean</span>
-        <span class="logo-he">ספידקליין</span>
-      </a>
-      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="תפריט">
+      <a href="#" class="logo"><span class="speed">Speed</span><span class="clean">Clean</span></a>
+      <button class="hamburger" id="hamburger" aria-label="תפריט">
         <span></span><span></span><span></span>
       </button>
       <ul class="nav-links" id="navLinks">
         <li><a href="#services">שירותים</a></li>
-        <li><a href="#process">איך זה עובד</a></li>
-        <li><a href="#pricing">מחירון</a></li>
+        <li><a href="#why">למה אנחנו</a></li>
         <li><a href="#reviews">ביקורות</a></li>
-        <li><a href="#faq">שאלות נפוצות</a></li>
+        <li><a href="#faq">שאלות</a></li>
         <li><a href="#contact" class="nav-cta">קבלו הצעת מחיר</a></li>
       </ul>
     </div>
   </nav>
 
-  <!-- Hero Section -->
+  <!-- Hero -->
   <section class="hero" id="hero">
-    <div class="hero-bg"></div>
-    <div class="container hero-inner">
-      <div class="hero-content">
-        <div class="hero-badge">⭐ מעל 3,000 מזגנים נוקו השנה</div>
-        <h1>המזגן שלכם <span class="text-gradient">מלוכלך?</span><br />אנחנו נחזיר אותו לחדש.</h1>
-        <p class="hero-sub">ניקוי וחיטוי מזגנים מקצועי בשרון והמרכז. שירות מהיר, מחירים הוגנים, תוצאות שמדברות בעד עצמן.</p>
-        <div class="hero-buttons">
-          <a href="tel:0501234567" class="btn btn-primary btn-lg">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            התקשרו עכשיו
-          </a>
-          <a href="https://wa.me/972501234567?text=היי, אשמח לקבל הצעת מחיר לניקוי מזגן" class="btn btn-whatsapp btn-lg" target="_blank" rel="noopener">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            שלחו הודעה בוואטסאפ
-          </a>
-        </div>
-        <div class="hero-trust">
-          <div class="trust-item">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-            <span>טכנאים מוסמכים</span>
-          </div>
-          <div class="trust-item">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-            <span>אחריות מלאה</span>
-          </div>
-          <div class="trust-item">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-            <span>חומרים ידידותיים לסביבה</span>
-          </div>
-        </div>
-      </div>
-      <div class="hero-form-wrapper">
-        <div class="hero-form-card">
-          <h3>קבלו הצעת מחיר חינם</h3>
-          <p>השאירו פרטים ונחזור אליכם תוך 30 דקות</p>
-          <form class="hero-form" id="heroForm">
-            <input type="text" name="name" placeholder="שם מלא" required />
-            <input type="tel" name="phone" placeholder="טלפון" required />
-            <select name="service" required>
-              <option value="" disabled selected>סוג שירות</option>
-              <option value="wall">ניקוי מזגן עילי</option>
-              <option value="mini-central">ניקוי מזגן מיני מרכזי</option>
-              <option value="ducts">ניקוי תעלות מיזוג</option>
-              <option value="disinfection">חיטוי אנטי-בקטריאלי</option>
-              <option value="other">אחר</option>
-            </select>
-            <select name="units">
-              <option value="" disabled selected>מספר מזגנים</option>
-              <option value="1">מזגן 1</option>
-              <option value="2">2 מזגנים</option>
-              <option value="3">3 מזגנים</option>
-              <option value="4">4 מזגנים</option>
-              <option value="5+">5 ומעלה</option>
-            </select>
-            <button type="submit" class="btn btn-primary btn-block">שלחו לי הצעת מחיר →</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Stats Bar -->
-  <section class="stats-bar">
-    <div class="container stats-inner">
-      <div class="stat-item">
-        <span class="stat-number" data-target="3000">0</span><span class="stat-plus">+</span>
-        <span class="stat-label">מזגנים נוקו</span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-number" data-target="8">0</span>
-        <span class="stat-label">שנות ניסיון</span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-number" data-target="4.9" data-decimals="1">0</span>
-        <span class="stat-label">דירוג ב-Google</span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-number" data-target="100">0</span><span class="stat-percent">%</span>
-        <span class="stat-label">שביעות רצון</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- Services Section -->
-  <section class="services" id="services">
     <div class="container">
-      <div class="section-header">
+      <div class="hero-label reveal">⭐ 4.9 בגוגל · מעל 3,000 מזגנים נוקו</div>
+      <h1 class="reveal">המזגן שלכם לא נוקה<br /><em>מספיק זמן.</em></h1>
+      <p class="reveal">ניקוי וחיטוי מקצועי בשרון והמרכז – שירות מהיר, מחירים הוגנים, תוצאות שמרגישים.</p>
+      <p class="hero-trust reveal"><strong>אחריות מלאה</strong> · חומרים בטוחים לילדים · מגיעים תוך 24 שעות</p>
+      <div class="hero-ctas reveal">
+        <a href="tel:0501234567" class="btn btn-primary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.66A2 2 0 012 .94h3a2 2 0 012 1.72c.13 1 .39 1.98.73 2.93a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.21-1.21a2 2 0 012.11-.45c.95.34 1.93.6 2.93.73A2 2 0 0122 16.92z"/></svg>
+          050-123-4567
+        </a>
+        <a href="https://wa.me/972501234567" class="btn btn-wa" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          שלחו וואטסאפ
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="section services" id="services">
+    <div class="container">
+      <div class="services-header reveal">
         <span class="section-tag">השירותים שלנו</span>
-        <h2>פתרונות ניקוי מקצועיים<br /><span class="text-gradient">לכל סוג מזגן</span></h2>
-        <p>אנחנו מטפלים בכל סוגי המזגנים עם ציוד מקצועי וחומרים ידידותיים לסביבה</p>
+        <h2 class="section-heading">פתרון לכל סוג מזגן</h2>
+        <p class="section-sub">ניקוי מקצועי לכל סוגי המזגנים – לבתים, משרדים ועסקים.</p>
       </div>
       <div class="services-grid">
-        <div class="service-card">
+        <div class="service-card reveal">
           <div class="service-icon">
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="10" rx="2"/><path d="M6 18h12"/><path d="M10 14v4"/><path d="M14 14v4"/><path d="M6 8h.01M9 8h.01M12 8h.01"/></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M7 9h10M7 12h6"/></svg>
           </div>
-          <h3>ניקוי מזגן עילי</h3>
-          <p>ניקוי עמוק של המאייד, המפוח, הפילטרים והניקוזים. כולל חיטוי וניטרול ריחות.</p>
-          <ul class="service-features">
-            <li>פירוק מלא של היחידה</li>
-            <li>ניקוי בלחץ מים</li>
-            <li>חיטוי אנטי-בקטריאלי</li>
-            <li>בדיקת תקינות</li>
-          </ul>
-          <div class="service-price">החל מ-<strong>250 ₪</strong></div>
+          <h3>מזגן עילי</h3>
+          <p>פירוק מלא, שטיפה בלחץ מים, חיטוי אנטי-בקטריאלי וסגירה מסודרת.</p>
         </div>
-        <div class="service-card featured">
-          <div class="service-badge">הכי פופולרי</div>
+        <div class="service-card reveal">
           <div class="service-icon">
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="3" width="22" height="14" rx="2"/><path d="M5 21h14"/><path d="M8 17v4"/><path d="M16 17v4"/><path d="M5 7h.01M8 7h.01M11 7h.01M5 10h.01M8 10h.01M11 10h.01M14 7h5M14 10h5"/></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/><path d="M2 12h4M18 12h4M12 2v4M12 18v4"/></svg>
           </div>
-          <h3>ניקוי מזגן מיני מרכזי</h3>
-          <p>טיפול מקצועי ומקיף ליחידות מיני מרכזיות, כולל ניקוי סוללת הקירור והמפוחים.</p>
-          <ul class="service-features">
-            <li>ניקוי סוללת קירור</li>
-            <li>ניקוי מפוחים וטורבינות</li>
-            <li>ניקוי מגש עיבוי</li>
-            <li>בדיקת גז ותקינות</li>
-          </ul>
-          <div class="service-price">החל מ-<strong>600 ₪</strong></div>
+          <h3>מיני מרכזי</h3>
+          <p>ניקוי סוללת קירור, מפוחים וטורבינות – כולל בדיקת גז ותפקוד.</p>
         </div>
-        <div class="service-card">
+        <div class="service-card reveal">
           <div class="service-icon">
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9h18M3 15h18"/><rect x="2" y="3" width="20" height="18" rx="2"/></svg>
           </div>
-          <h3>ניקוי תעלות מיזוג</h3>
-          <p>ניקוי וחיטוי מקצועי של תעלות מיזוג אוויר לבתים, משרדים ומבנים מסחריים.</p>
-          <ul class="service-features">
-            <li>סריקה וצילום התעלות</li>
-            <li>ניקוי מכני ושאיבה</li>
-            <li>חיטוי אנטי-מיקרוביאלי</li>
-            <li>דוח מצב סיום</li>
-          </ul>
-          <div class="service-price">החל מ-<strong>1,200 ₪</strong></div>
+          <h3>תעלות מיזוג</h3>
+          <p>ניקוי מכני מלא של התעלות, שאיבה וחיטוי – לבתים, משרדים ומסחר.</p>
         </div>
-        <div class="service-card">
+        <div class="service-card reveal">
           <div class="service-icon">
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           </div>
           <h3>חיטוי אנטי-בקטריאלי</h3>
-          <p>טיפול חיטוי מתקדם להרס חיידקים, עובש ואלרגנים. אידיאלי למשפחות עם ילדים.</p>
-          <ul class="service-features">
-            <li>חומרים בטוחים לילדים</li>
-            <li>ניטרול ריחות מלא</li>
-            <li>הגנה עד 6 חודשים</li>
-            <li>אישור בריאות</li>
-          </ul>
-          <div class="service-price">החל מ-<strong>150 ₪</strong></div>
+          <p>הרס חיידקים, עובש ואלרגנים עם חומרים בטוחים לילדים וחיות מחמד.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Before/After Section -->
-  <section class="before-after" id="results">
+  <!-- Why Us -->
+  <section class="section why" id="why">
     <div class="container">
-      <div class="section-header">
-        <span class="section-tag">תוצאות אמיתיות</span>
-        <h2>רואים את <span class="text-gradient">ההבדל</span></h2>
-        <p>תמונות אמיתיות מעבודות שביצענו - לפני ואחרי הניקוי</p>
-      </div>
-      <div class="ba-grid">
-        <div class="ba-card">
-          <div class="ba-slider" data-ba>
-            <div class="ba-before">
-              <div class="ba-placeholder ba-dirty">
-                <div class="ba-placeholder-icon">😷</div>
-                <div class="ba-placeholder-text">לפני</div>
-                <div class="ba-placeholder-desc">עובש, אבק ולכלוך</div>
-              </div>
-              <span class="ba-label">לפני</span>
-            </div>
-            <div class="ba-after">
-              <div class="ba-placeholder ba-clean">
-                <div class="ba-placeholder-icon">✨</div>
-                <div class="ba-placeholder-text">אחרי</div>
-                <div class="ba-placeholder-desc">נקי כמו חדש</div>
-              </div>
-              <span class="ba-label">אחרי</span>
-            </div>
-            <div class="ba-handle">
-              <div class="ba-handle-line"></div>
-              <div class="ba-handle-circle">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M18 8l4 4-4 4M6 8l-4 4 4 4"/></svg>
-              </div>
-              <div class="ba-handle-line"></div>
-            </div>
-          </div>
-          <p class="ba-caption">מזגן עילי - דירה בכפר סבא</p>
+      <div class="why-inner">
+        <div class="why-header reveal">
+          <span class="section-tag">למה ספידקליין?</span>
+          <h2 class="section-heading">פשוט, מהיר, ואמין.</h2>
+          <p class="section-sub">לא רק ניקיון — שירות שאפשר לסמוך עליו.</p>
         </div>
-        <div class="ba-card">
-          <div class="ba-slider" data-ba>
-            <div class="ba-before">
-              <div class="ba-placeholder ba-dirty">
-                <div class="ba-placeholder-icon">🦠</div>
-                <div class="ba-placeholder-text">לפני</div>
-                <div class="ba-placeholder-desc">חיידקים ועובש</div>
-              </div>
-              <span class="ba-label">לפני</span>
-            </div>
-            <div class="ba-after">
-              <div class="ba-placeholder ba-clean">
-                <div class="ba-placeholder-icon">💨</div>
-                <div class="ba-placeholder-text">אחרי</div>
-                <div class="ba-placeholder-desc">אוויר נקי ובריא</div>
-              </div>
-              <span class="ba-label">אחרי</span>
-            </div>
-            <div class="ba-handle">
-              <div class="ba-handle-line"></div>
-              <div class="ba-handle-circle">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M18 8l4 4-4 4M6 8l-4 4 4 4"/></svg>
-              </div>
-              <div class="ba-handle-line"></div>
+        <div class="why-list">
+          <div class="why-item reveal">
+            <div class="why-num">1</div>
+            <div>
+              <h4>מגיעים מהר</h4>
+              <p>תיאום ביום ההזמנה. הטכנאי מגיע בזמן, עם ציוד מלא – ללא עיכובים.</p>
             </div>
           </div>
-          <p class="ba-caption">מזגן מיני מרכזי - בית בהרצליה</p>
-        </div>
-        <div class="ba-card">
-          <div class="ba-slider" data-ba>
-            <div class="ba-before">
-              <div class="ba-placeholder ba-dirty">
-                <div class="ba-placeholder-icon">🤧</div>
-                <div class="ba-placeholder-text">לפני</div>
-                <div class="ba-placeholder-desc">פילטר סתום</div>
-              </div>
-              <span class="ba-label">לפני</span>
-            </div>
-            <div class="ba-after">
-              <div class="ba-placeholder ba-clean">
-                <div class="ba-placeholder-icon">🌿</div>
-                <div class="ba-placeholder-text">אחרי</div>
-                <div class="ba-placeholder-desc">זרימת אוויר מושלמת</div>
-              </div>
-              <span class="ba-label">אחרי</span>
-            </div>
-            <div class="ba-handle">
-              <div class="ba-handle-line"></div>
-              <div class="ba-handle-circle">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M18 8l4 4-4 4M6 8l-4 4 4 4"/></svg>
-              </div>
-              <div class="ba-handle-line"></div>
+          <div class="why-item reveal">
+            <div class="why-num">2</div>
+            <div>
+              <h4>אחריות על הכל</h4>
+              <p>לא מרוצים? נחזור ונתקן ללא עלות נוספת. בלי תירוצים, בלי בירוקרטיה.</p>
             </div>
           </div>
-          <p class="ba-caption">ניקוי פילטרים - משרד ברעננה</p>
+          <div class="why-item reveal">
+            <div class="why-num">3</div>
+            <div>
+              <h4>בטוח לכל המשפחה</h4>
+              <p>חומרים ידידותיים לסביבה, מאושרים ובטוחים לילדים ולחיות מחמד.</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Process Section -->
-  <section class="process" id="process">
+  <!-- Reviews -->
+  <section class="section reviews" id="reviews">
     <div class="container">
-      <div class="section-header">
-        <span class="section-tag">תהליך העבודה</span>
-        <h2>איך זה <span class="text-gradient">עובד?</span></h2>
-        <p>תהליך פשוט ומהיר מהרגע שאתם פונים אלינו</p>
-      </div>
-      <div class="process-steps">
-        <div class="process-step">
-          <div class="step-number">1</div>
-          <div class="step-icon">📞</div>
-          <h3>יצירת קשר</h3>
-          <p>התקשרו, שלחו וואטסאפ או השאירו פרטים בטופס. אנחנו חוזרים תוך 30 דקות.</p>
-        </div>
-        <div class="process-connector"></div>
-        <div class="process-step">
-          <div class="step-number">2</div>
-          <div class="step-icon">📋</div>
-          <h3>תיאום וביקור</h3>
-          <p>קובעים מועד שנוח לכם. הטכנאי מגיע בזמן עם כל הציוד הדרוש.</p>
-        </div>
-        <div class="process-connector"></div>
-        <div class="process-step">
-          <div class="step-number">3</div>
-          <div class="step-icon">🔧</div>
-          <h3>ניקוי מקצועי</h3>
-          <p>פירוק, ניקוי עמוק בלחץ מים, חיטוי אנטי-בקטריאלי והרכבה מחדש.</p>
-        </div>
-        <div class="process-connector"></div>
-        <div class="process-step">
-          <div class="step-number">4</div>
-          <div class="step-icon">✅</div>
-          <h3>בדיקה ואישור</h3>
-          <p>בדיקת תקינות סופית, הפעלת המזגן ווידוא שהכל עובד מושלם.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Pricing Section -->
-  <section class="pricing" id="pricing">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">מחירון</span>
-        <h2>מחירים <span class="text-gradient">שקופים והוגנים</span></h2>
-        <p>בלי הפתעות. המחיר שנאמר הוא המחיר שתשלמו.</p>
-      </div>
-      <div class="pricing-grid">
-        <div class="price-card">
-          <div class="price-header">
-            <h3>מזגן עילי</h3>
-            <p>ניקוי וחיטוי עמוק</p>
-          </div>
-          <div class="price-amount">
-            <span class="price-from">החל מ-</span>
-            <span class="price-value">250</span>
-            <span class="price-currency">₪</span>
-          </div>
-          <ul class="price-features">
-            <li>פירוק וניקוי מלא</li>
-            <li>שטיפה בלחץ מים</li>
-            <li>חיטוי אנטי-בקטריאלי</li>
-            <li>בדיקת תקינות</li>
-            <li>אחריות על העבודה</li>
-          </ul>
-          <a href="#contact" class="btn btn-outline btn-block">הזמינו עכשיו</a>
-          <div class="price-note">💡 הנחה על 3+ מזגנים</div>
-        </div>
-        <div class="price-card popular">
-          <div class="popular-badge">משתלם ביותר</div>
-          <div class="price-header">
-            <h3>מיני מרכזי</h3>
-            <p>טיפול פרימיום מקיף</p>
-          </div>
-          <div class="price-amount">
-            <span class="price-from">החל מ-</span>
-            <span class="price-value">600</span>
-            <span class="price-currency">₪</span>
-          </div>
-          <ul class="price-features">
-            <li>ניקוי סוללת קירור</li>
-            <li>ניקוי מפוחים וטורבינות</li>
-            <li>ניקוי מגש עיבוי</li>
-            <li>חיטוי מלא</li>
-            <li>בדיקת גז ותקינות</li>
-            <li>אחריות מורחבת</li>
-          </ul>
-          <a href="#contact" class="btn btn-primary btn-block">הזמינו עכשיו</a>
-          <div class="price-note">🔥 השירות הכי מבוקש</div>
-        </div>
-        <div class="price-card">
-          <div class="price-header">
-            <h3>תעלות מיזוג</h3>
-            <p>ניקוי מערכת מלאה</p>
-          </div>
-          <div class="price-amount">
-            <span class="price-from">החל מ-</span>
-            <span class="price-value">1,200</span>
-            <span class="price-currency">₪</span>
-          </div>
-          <ul class="price-features">
-            <li>סריקה וצילום תעלות</li>
-            <li>ניקוי מכני מלא</li>
-            <li>שאיבת לכלוך ואבק</li>
-            <li>חיטוי אנטי-מיקרוביאלי</li>
-            <li>דוח מצב מסכם</li>
-          </ul>
-          <a href="#contact" class="btn btn-outline btn-block">הזמינו עכשיו</a>
-          <div class="price-note">🏢 מתאים גם לעסקים</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Why Us Section -->
-  <section class="why-us">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">למה ספידקליין?</span>
-        <h2>6 סיבות <span class="text-gradient">לבחור בנו</span></h2>
-      </div>
-      <div class="why-grid">
-        <div class="why-card">
-          <div class="why-icon">⚡</div>
-          <h3>מהירים ואמינים</h3>
-          <p>הגעה מהירה, עבודה יסודית. אנחנו מכבדים את הזמן שלכם.</p>
-        </div>
-        <div class="why-card">
-          <div class="why-icon">🛡️</div>
-          <h3>אחריות מלאה</h3>
-          <p>אחריות על כל עבודה שאנחנו מבצעים. לא מרוצים? נחזור ללא עלות.</p>
-        </div>
-        <div class="why-card">
-          <div class="why-icon">🌿</div>
-          <h3>חומרים ידידותיים</h3>
-          <p>חומרי ניקוי וחיטוי בטוחים לילדים, לחיות מחמד ולסביבה.</p>
-        </div>
-        <div class="why-card">
-          <div class="why-icon">👨‍🔧</div>
-          <h3>טכנאים מוסמכים</h3>
-          <p>צוות מקצועי ומנוסה עם הכשרה מלאה בכל סוגי המזגנים.</p>
-        </div>
-        <div class="why-card">
-          <div class="why-icon">💰</div>
-          <h3>מחירים שקופים</h3>
-          <p>ללא עלויות נסתרות. המחיר שנאמר לכם הוא המחיר שתשלמו.</p>
-        </div>
-        <div class="why-card">
-          <div class="why-icon">⭐</div>
-          <h3>ביקורות מעולות</h3>
-          <p>מאות לקוחות מרוצים עם דירוג 4.9 בגוגל. התוצאות מדברות.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Reviews Section -->
-  <section class="reviews" id="reviews">
-    <div class="container">
-      <div class="section-header">
+      <div class="reviews-header reveal">
         <span class="section-tag">מה הלקוחות אומרים</span>
-        <h2>ביקורות <span class="text-gradient">אמיתיות</span></h2>
-        <div class="google-rating">
-          <div class="stars">★★★★★</div>
-          <span>4.9 מתוך 5 | 200+ ביקורות בגוגל</span>
-        </div>
+        <div class="stars">★★★★★</div>
+        <h2 class="section-heading">4.9 מתוך 5 בגוגל</h2>
+        <p class="section-sub" style="margin-inline:auto;">מעל 200 ביקורות אמיתיות מלקוחות מרוצים</p>
       </div>
       <div class="reviews-grid">
-        <div class="review-card">
+        <div class="review-card reveal">
           <div class="review-stars">★★★★★</div>
-          <p class="review-text">"הזמנתי ניקוי ל-3 מזגנים בבית. הטכנאי הגיע בזמן, עבד בצורה מסודרת ומקצועית. המזגנים עובדים כמו חדשים! ממליצה בחום."</p>
-          <div class="review-author">
-            <div class="review-avatar">מ</div>
-            <div>
-              <strong>מיכל כ.</strong>
-              <span>כפר סבא</span>
-            </div>
-          </div>
+          <blockquote>הזמנתי ניקוי ל-3 מזגנים. הטכנאי הגיע בזמן, עבד בצורה מקצועית. המזגנים עובדים כמו חדשים. ממליצה בחום.</blockquote>
+          <div class="review-author">מיכל כ. — כפר סבא</div>
         </div>
-        <div class="review-card">
+        <div class="review-card reveal">
           <div class="review-stars">★★★★★</div>
-          <p class="review-text">"שירות מעולה! הבחור שהגיע היה מקצועי, הסביר הכל, ואפילו הראה לי את הלכלוך שהוציא מהמזגן. פשוט מחריד כמה זה היה מלוכלך. עכשיו האוויר נקי לגמרי."</p>
-          <div class="review-author">
-            <div class="review-avatar">א</div>
-            <div>
-              <strong>אבי ר.</strong>
-              <span>הרצליה</span>
-            </div>
-          </div>
+          <blockquote>שירות מעולה. הבחור הסביר הכל והראה לי בדיוק מה הוציא מהמזגן. מחריד כמה היה שם. עכשיו האוויר נקי לגמרי.</blockquote>
+          <div class="review-author">אבי ר. — הרצליה</div>
         </div>
-        <div class="review-card">
+        <div class="review-card reveal">
           <div class="review-stars">★★★★★</div>
-          <p class="review-text">"כבר השנה השלישית שאני מזמין מספידקליין. תמיד אותה רמת שירות גבוהה. מחירים הוגנים והתוצאה מדהימה. שווה כל שקל!"</p>
-          <div class="review-author">
-            <div class="review-avatar">ד</div>
-            <div>
-              <strong>דני ל.</strong>
-              <span>רעננה</span>
-            </div>
-          </div>
-        </div>
-        <div class="review-card">
-          <div class="review-stars">★★★★★</div>
-          <p class="review-text">"הילד שלי סבל מאלרגיות ומאז שניקינו את המזגנים עם ספידקליין ההבדל מורגש מאוד. תודה רבה על השירות המקצועי!"</p>
-          <div class="review-author">
-            <div class="review-avatar">ש</div>
-            <div>
-              <strong>שרון מ.</strong>
-              <span>נתניה</span>
-            </div>
-          </div>
+          <blockquote>הילד שלי סבל מאלרגיות. מאז שניקינו את המזגנים ההבדל מורגש מאוד. תודה על השירות המקצועי והאדיב.</blockquote>
+          <div class="review-author">שרון מ. — נתניה</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- FAQ Section -->
-  <section class="faq" id="faq">
+  <!-- FAQ -->
+  <section class="section faq" id="faq">
     <div class="container">
-      <div class="section-header">
-        <span class="section-tag">שאלות נפוצות</span>
-        <h2>יש לכם <span class="text-gradient">שאלות?</span></h2>
-        <p>ריכזנו את התשובות לשאלות הנפוצות ביותר</p>
-      </div>
-      <div class="faq-list">
-        <div class="faq-item">
-          <button class="faq-question">
-            <span>כמה זמן לוקח ניקוי מזגן?</span>
-            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-          </button>
-          <div class="faq-answer">
-            <p>ניקוי מזגן עילי רגיל לוקח כ-30-45 דקות. ניקוי מזגן מיני מרכזי לוקח כ-60-90 דקות. משך הזמן עשוי להשתנות בהתאם למצב המזגן ורמת הלכלוך.</p>
-          </div>
+      <div class="faq-inner">
+        <div class="faq-header reveal">
+          <span class="section-tag">שאלות נפוצות</span>
+          <h2 class="section-heading">יש לכם שאלות?</h2>
         </div>
-        <div class="faq-item">
-          <button class="faq-question">
-            <span>כל כמה זמן צריך לנקות מזגן?</span>
-            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-          </button>
-          <div class="faq-answer">
-            <p>מומלץ לנקות את המזגנים לפחות פעם בשנה, רצוי לפני תחילת עונת הקיץ. במקומות עם ריכוז אבק גבוה או שימוש אינטנסיבי, מומלץ כל 6 חודשים.</p>
+        <div class="faq-list">
+          <div class="faq-item reveal">
+            <button class="faq-q">
+              כמה זמן לוקח ניקוי מזגן?
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-a"><p>ניקוי מזגן עילי אחד לוקח כ-30–45 דקות. מיני מרכזי 60–90 דקות, תלוי בגודל המערכת.</p></div>
           </div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-question">
-            <span>האם חומרי הניקוי בטוחים לילדים וחיות מחמד?</span>
-            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-          </button>
-          <div class="faq-answer">
-            <p>בהחלט! אנחנו משתמשים אך ורק בחומרים ידידותיים לסביבה ובטוחים לשימוש בסביבת ילדים וחיות מחמד. כל החומרים שלנו מאושרים ועומדים בתקנים המחמירים ביותר.</p>
+          <div class="faq-item reveal">
+            <button class="faq-q">
+              כל כמה זמן צריך לנקות מזגן?
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-a"><p>אחת לשנה לפחות – רצוי לפני עונת הקיץ. בבתים עם ילדים, חיות מחמד, או רגישויות – כל חצי שנה.</p></div>
           </div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-question">
-            <span>האם יש לכלוך שניתן לראות בעין?</span>
-            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-          </button>
-          <div class="faq-answer">
-            <p>בהחלט. ברוב המקרים הלכלוך, העובש והחיידקים שמצטברים במזגן נראים בבירור. הטכנאים שלנו מראים ללקוחות את הלכלוך שהוציאו כדי שתראו בדיוק מה נשמתם עד עכשיו.</p>
+          <div class="faq-item reveal">
+            <button class="faq-q">
+              האם החומרים בטוחים לילדים?
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-a"><p>כן. כל החומרים שלנו ידידותיים לסביבה, מאושרים ובטוחים לחלוטין לילדים, תינוקות וחיות מחמד.</p></div>
           </div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-question">
-            <span>באילו אזורים אתם עובדים?</span>
-            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-          </button>
-          <div class="faq-answer">
-            <p>אנחנו פועלים באזור השרון והמרכז: כפר סבא, רעננה, הוד השרון, הרצליה, נתניה, רמת השרון, פתח תקווה, תל אביב והסביבה. לא בטוחים אם אנחנו מגיעים אליכם? צרו קשר ונבדוק!</p>
-          </div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-question">
-            <span>מה אמצעי התשלום?</span>
-            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-          </button>
-          <div class="faq-answer">
-            <p>אנחנו מקבלים מזומן, ביט, PayBox, העברה בנקאית ושיקים. ניתן לשלם בכל דרך שנוחה לכם.</p>
+          <div class="faq-item reveal">
+            <button class="faq-q">
+              באילו אזורים אתם עובדים?
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-a"><p>אנחנו פעילים בכל אזור השרון והמרכז — רעננה, כפר סבא, הרצליה, נתניה, רמת גן, פתח תקווה ועוד.</p></div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Contact Section -->
-  <section class="contact" id="contact">
+  <!-- Contact -->
+  <section class="section contact" id="contact">
     <div class="container">
       <div class="contact-inner">
-        <div class="contact-info">
-          <div class="section-header section-header-start">
-            <span class="section-tag">צרו קשר</span>
-            <h2>מוכנים <span class="text-gradient">להתחיל?</span></h2>
-            <p>השאירו פרטים ונחזור אליכם עם הצעת מחיר מותאמת אישית, או פשוט התקשרו.</p>
-          </div>
+        <div class="contact-info reveal">
+          <span class="section-tag">צרו קשר</span>
+          <h2 class="section-heading">מוכנים? בואו נקבע.</h2>
+          <p class="section-sub">השאירו פרטים ונחזור אליכם תוך 30 דקות עם הצעת מחיר מותאמת.</p>
           <div class="contact-methods">
-            <a href="tel:0501234567" class="contact-method">
+            <div class="contact-method">
               <div class="contact-method-icon">📞</div>
-              <div>
-                <strong>טלפון</strong>
-                <span>050-123-4567</span>
-              </div>
-            </a>
-            <a href="https://wa.me/972501234567" class="contact-method" target="_blank" rel="noopener">
+              <a href="tel:0501234567">050-123-4567</a>
+            </div>
+            <div class="contact-method">
               <div class="contact-method-icon">💬</div>
-              <div>
-                <strong>WhatsApp</strong>
-                <span>שלחו הודעה עכשיו</span>
-              </div>
-            </a>
+              <a href="https://wa.me/972501234567" target="_blank" rel="noopener">WhatsApp</a>
+            </div>
             <div class="contact-method">
               <div class="contact-method-icon">📍</div>
-              <div>
-                <strong>אזור שירות</strong>
-                <span>השרון והמרכז</span>
-              </div>
+              <span>שרון והמרכז</span>
             </div>
             <div class="contact-method">
               <div class="contact-method-icon">🕐</div>
-              <div>
-                <strong>שעות פעילות</strong>
-                <span>א'-ו' 08:00-19:00</span>
-              </div>
+              <span>ראשון–שישי, 08:00–19:00</span>
             </div>
           </div>
         </div>
-        <div class="contact-form-wrapper">
-          <form class="contact-form" id="contactForm">
-            <div class="form-row">
-              <input type="text" name="name" placeholder="שם מלא" required />
-              <input type="tel" name="phone" placeholder="טלפון" required />
+        <div class="contact-form reveal">
+          <form id="contactForm" novalidate>
+            <div class="form-group">
+              <label for="name">שם מלא</label>
+              <input type="text" id="name" name="name" placeholder="ישראל ישראלי" required />
             </div>
-            <input type="email" name="email" placeholder="אימייל (לא חובה)" />
-            <select name="service" required>
-              <option value="" disabled selected>סוג שירות</option>
-              <option value="wall">ניקוי מזגן עילי</option>
-              <option value="mini-central">ניקוי מזגן מיני מרכזי</option>
-              <option value="ducts">ניקוי תעלות מיזוג</option>
-              <option value="disinfection">חיטוי אנטי-בקטריאלי</option>
-              <option value="other">אחר</option>
-            </select>
-            <textarea name="message" rows="3" placeholder="ספרו לנו קצת על מה שאתם צריכים..."></textarea>
-            <button type="submit" class="btn btn-primary btn-block btn-lg">שלחו פנייה →</button>
+            <div class="form-group">
+              <label for="phone">טלפון</label>
+              <input type="tel" id="phone" name="phone" placeholder="050-000-0000" required />
+            </div>
+            <div class="form-group">
+              <label for="service">סוג שירות</label>
+              <select id="service" name="service">
+                <option value="">בחרו שירות</option>
+                <option>מזגן עילי</option>
+                <option>מיני מרכזי</option>
+                <option>תעלות מיזוג</option>
+                <option>חיטוי אנטי-בקטריאלי</option>
+                <option>אחר</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary form-submit" id="submitBtn">שלחו פנייה ←</button>
           </form>
         </div>
       </div>
@@ -656,69 +765,80 @@
 
   <!-- Footer -->
   <footer class="footer">
-    <div class="container">
-      <div class="footer-inner">
-        <div class="footer-brand">
-          <a href="#" class="logo">
-            <span class="logo-speed">Speed</span><span class="logo-clean">Clean</span>
-          </a>
-          <p>ניקוי וחיטוי מזגנים מקצועי בשרון והמרכז. שירות מהיר, אמין ומקצועי.</p>
-          <div class="footer-social">
-            <a href="#" aria-label="Facebook">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
-            </a>
-            <a href="#" aria-label="Instagram">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-            </a>
-          </div>
-        </div>
-        <div class="footer-links">
-          <h4>שירותים</h4>
-          <ul>
-            <li><a href="#services">ניקוי מזגן עילי</a></li>
-            <li><a href="#services">ניקוי מיני מרכזי</a></li>
-            <li><a href="#services">ניקוי תעלות מיזוג</a></li>
-            <li><a href="#services">חיטוי אנטי-בקטריאלי</a></li>
-          </ul>
-        </div>
-        <div class="footer-links">
-          <h4>אזורי שירות</h4>
-          <ul>
-            <li><a href="#">כפר סבא</a></li>
-            <li><a href="#">רעננה</a></li>
-            <li><a href="#">הרצליה</a></li>
-            <li><a href="#">הוד השרון</a></li>
-            <li><a href="#">נתניה</a></li>
-            <li><a href="#">תל אביב</a></li>
-          </ul>
-        </div>
-        <div class="footer-links">
-          <h4>ניווט</h4>
-          <ul>
-            <li><a href="#services">שירותים</a></li>
-            <li><a href="#pricing">מחירון</a></li>
-            <li><a href="#reviews">ביקורות</a></li>
-            <li><a href="#faq">שאלות נפוצות</a></li>
-            <li><a href="#contact">צרו קשר</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>&copy; 2026 ספידקליין - Speed Clean. כל הזכויות שמורות.</p>
-      </div>
-    </div>
+    <div class="logo-f"><span>Speed</span>Clean</div>
+    <div>ניקוי מזגנים מקצועי – שרון והמרכז</div>
+    <div style="margin-top:8px;">© 2026 ספידקליין. כל הזכויות שמורות.</div>
   </footer>
 
-  <!-- Floating WhatsApp Button -->
-  <a href="https://wa.me/972501234567?text=היי, אשמח לקבל הצעת מחיר לניקוי מזגן" class="whatsapp-float" target="_blank" rel="noopener" aria-label="WhatsApp">
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  <!-- Floating WhatsApp -->
+  <a href="https://wa.me/972501234567" class="wa-float" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
   </a>
 
-  <!-- Floating Call Button (Mobile) -->
-  <a href="tel:0501234567" class="call-float" aria-label="התקשרו עכשיו">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-  </a>
+  <script>
+    // Navbar scroll
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
 
-  <script src="script.js"></script>
+    // Mobile menu
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      navLinks.classList.toggle('open');
+    });
+    navLinks.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        navLinks.classList.remove('open');
+      });
+    });
+
+    // FAQ accordion
+    document.querySelectorAll('.faq-q').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const isOpen = btn.classList.contains('open');
+        document.querySelectorAll('.faq-q').forEach(b => {
+          b.classList.remove('open');
+          b.nextElementSibling.style.maxHeight = null;
+        });
+        if (!isOpen) {
+          btn.classList.add('open');
+          btn.nextElementSibling.style.maxHeight = btn.nextElementSibling.scrollHeight + 'px';
+        }
+      });
+    });
+
+    // Form submit
+    document.getElementById('contactForm').addEventListener('submit', e => {
+      e.preventDefault();
+      const btn = document.getElementById('submitBtn');
+      btn.textContent = 'שולח...';
+      btn.disabled = true;
+      setTimeout(() => {
+        btn.textContent = '✓ נשלח! נחזור אליכם בקרוב';
+        btn.style.background = '#10b981';
+        setTimeout(() => {
+          btn.textContent = 'שלחו פנייה ←';
+          btn.style.background = '';
+          btn.disabled = false;
+          e.target.reset();
+        }, 4000);
+      }, 1000);
+    });
+
+    // Scroll reveal
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
 </body>
 </html>
