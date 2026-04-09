@@ -2,6 +2,30 @@
 // Speed Clean - Landing Page Scripts
 // ============================================
 
+// --- Supabase Config ---
+const SUPABASE_URL = 'https://zpsohcjzbngfjnkmuwep.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable_ItbypEWGFQCv99Cs4vHkIw_2E7wWdbM';
+
+// Initialize Supabase client (loaded via CDN in HTML)
+function getSupabase() {
+  return window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+}
+
+// --- UTM Helper ---
+function getUTMParams() {
+  const params = new URLSearchParams(window.location.search);
+  return {
+    utm_source:   params.get('utm_source')   || null,
+    utm_medium:   params.get('utm_medium')   || null,
+    utm_campaign: params.get('utm_campaign') || null,
+    utm_term:     params.get('utm_term')     || null,
+    utm_content:  params.get('utm_content')  || null,
+  };
+}
+
+// ============================================
+// Init
+// ============================================
 document.addEventListener('DOMContentLoaded', () => {
   initMobileMenu();
   initNavbarScroll();
@@ -154,40 +178,64 @@ function initBeforeAfterSliders() {
   });
 }
 
-// --- Form Handling ---
+// --- Form Handling (Supabase) ---
 function initFormHandling() {
-  const WEBHOOK_URL = 'https://hook.eu1.make.com/b4u7o3jd80luh399jw8bov437frivaox';
+  const sb = getSupabase();
   const forms = document.querySelectorAll('#heroForm, #contactForm');
+  const utmData = getUTMParams();
 
   forms.forEach(form => {
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
 
       const formData = new FormData(form);
       const data = Object.fromEntries(formData.entries());
-      data.form_source = form.id;
 
       const btn = form.querySelector('button[type="submit"]');
       const originalText = btn.textContent;
       btn.textContent = 'שולח...';
       btn.disabled = true;
 
-      fetch(WEBHOOK_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-      })
-      .then(response => {
-        if (response.ok) {
-          btn.textContent = 'נשלח בהצלחה! ✓';
-          btn.style.background = '#10b981';
-          form.reset();
-          window.location.href = '/thank-you/';
-        } else {
-          throw new Error('Server error');
-        }
-      })
-      .catch(() => {
+      // Build the lead record
+      const lead = {
+        name:         data.name         || null,
+        phone:        data.phone        || null,
+        email:        data.email        || null,
+        service:      data.service      || null,
+        units:        data.units        || null,
+        message:      data.message      || null,
+        form_source:  form.id,
+        page_url:     window.location.href,
+        ...utmData,
+      };
+
+      try {
+        // 1. Save to Supabase
+        const { error } = await sb.from('leads').insert([lead]);
+        if (error) throw error;
+
+        // 2. Send to Make.com webhook (via serverless proxy)
+        fetch('/api/webhook', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(lead),
+        }).catch(err => console.warn('Make webhook failed (non-blocking):', err));
+
+        // 3. Push event to GTM dataLayer
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'lead_submitted',
+          form_id: form.id,
+          lead_service: lead.service,
+        });
+
+        btn.textContent = 'נשלח בהצלחה! ✓';
+        btn.style.background = '#10b981';
+        form.reset();
+        window.location.href = '/thank-you/';
+
+      } catch (err) {
+        console.error('Supabase insert error:', err);
         btn.textContent = 'שגיאה, נסו שוב';
         btn.style.background = '#ef4444';
         setTimeout(() => {
@@ -195,7 +243,7 @@ function initFormHandling() {
           btn.style.background = '';
           btn.disabled = false;
         }, 3000);
-      });
+      }
     });
   });
 }
