@@ -1,0 +1,7 @@
+{
+  "rewrites": [
+    { "source": "/", "destination": "/משפכים/ניקוי-מזגנים/" },
+    { "source": "/thank-you", "destination": "/משפכים/ניקוי-מזגנים/thank-you/" },
+    { "source": "/thank-you/", "destination": "/משפכים/ניקוי-מזגנים/thank-you/" }
+  ]
+}
