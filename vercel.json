@@ -1,7 +1,7 @@
 {
   "rewrites": [
     { "source": "/", "destination": "/funnel/funnel-01/" },
-    { "source": "/thank-you", "destination": "/funnel/funnel-01/thank-you/" },
-    { "source": "/thank-you/", "destination": "/funnel/funnel-01/thank-you/" }
+    { "source": "/thank-you", "destination": "/funnel/funnel-01/thank-you.html" },
+    { "source": "/thank-you/", "destination": "/funnel/funnel-01/thank-you.html" }
   ]
 }
