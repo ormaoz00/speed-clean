@@ -835,6 +835,216 @@
     .wa-float:hover { transform: scale(1.05); box-shadow: 0 6px 28px rgba(37,211,102,.60); }
     .wa-float svg { flex-shrink: 0; }
 
+    /* ─── Consent Checkbox ──────────────────────────────── */
+    .form-consent {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin: 14px 0 6px;
+    }
+    .form-consent input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      min-width: 18px;
+      margin-top: 2px;
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+    .form-consent label {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+      cursor: pointer;
+    }
+    .form-consent label a { color: var(--accent); text-decoration: underline; }
+    .form-consent label a:hover { color: var(--accent-dark); }
+
+    /* ─── Accessibility Widget ───────────────────────────── */
+    .acc-btn {
+      position: fixed;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 300;
+      background: #1e293b;
+      color: #fff;
+      border: none;
+      border-radius: 10px 0 0 10px;
+      width: 44px;
+      height: 44px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: -2px 0 12px rgba(0,0,0,.18);
+      transition: background .2s, width .2s;
+      font-size: 20px;
+      line-height: 1;
+    }
+    .acc-btn:hover { background: #0f172a; width: 48px; }
+    .acc-btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+    /* Panel */
+    .acc-panel {
+      position: fixed;
+      right: -320px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 299;
+      width: 300px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 16px 0 0 16px;
+      box-shadow: -6px 0 32px rgba(0,0,0,.14);
+      padding: 24px 20px 20px;
+      transition: right .35s cubic-bezier(.4,0,.2,1);
+    }
+    .acc-panel.open { right: 44px; }
+    .acc-panel-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 18px;
+    }
+    .acc-panel-header h3 {
+      font-size: 15px;
+      font-weight: 800;
+      color: #0f172a;
+    }
+    .acc-panel-close {
+      width: 28px;
+      height: 28px;
+      background: #f1f5f9;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 13px;
+      color: #64748b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background .2s;
+    }
+    .acc-panel-close:hover { background: #e2e8f0; }
+
+    /* Option row */
+    .acc-option {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid #f1f5f9;
+    }
+    .acc-option:last-of-type { border-bottom: none; }
+    .acc-option-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      font-weight: 500;
+      color: #334155;
+    }
+    .acc-option-label .acc-opt-icon {
+      font-size: 18px;
+      width: 28px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    /* Toggle switch */
+    .acc-toggle {
+      position: relative;
+      width: 40px;
+      height: 22px;
+      flex-shrink: 0;
+    }
+    .acc-toggle input { opacity: 0; width: 0; height: 0; position: absolute; }
+    .acc-slider {
+      position: absolute;
+      inset: 0;
+      background: #cbd5e1;
+      border-radius: 100px;
+      cursor: pointer;
+      transition: background .25s;
+    }
+    .acc-slider::before {
+      content: '';
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      background: #fff;
+      border-radius: 50%;
+      top: 3px;
+      right: 3px;
+      transition: transform .25s;
+      box-shadow: 0 1px 4px rgba(0,0,0,.18);
+    }
+    .acc-toggle input:checked + .acc-slider { background: var(--accent); }
+    .acc-toggle input:checked + .acc-slider::before { transform: translateX(-18px); }
+
+    /* Font size controls */
+    .acc-font-ctrl {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .acc-font-btn {
+      width: 28px;
+      height: 28px;
+      background: #f1f5f9;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #334155;
+      transition: background .15s;
+      line-height: 1;
+    }
+    .acc-font-btn:hover { background: #e2e8f0; }
+    .acc-font-val { font-size: 13px; font-weight: 600; color: var(--muted); min-width: 28px; text-align: center; }
+
+    /* Reset */
+    .acc-reset {
+      width: 100%;
+      margin-top: 14px;
+      padding: 9px;
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--muted);
+      cursor: pointer;
+      transition: background .15s, color .15s;
+    }
+    .acc-reset:hover { background: #f1f5f9; color: #334155; }
+
+    /* ── Body-level accessibility classes ─────────────────── */
+    body.acc-high-contrast { filter: contrast(150%); }
+    body.acc-grayscale { filter: grayscale(100%); }
+    body.acc-high-contrast.acc-grayscale { filter: contrast(150%) grayscale(100%); }
+    body.acc-highlight-links a {
+      text-decoration: underline !important;
+      outline: 2px solid var(--accent) !important;
+      outline-offset: 2px !important;
+    }
+    body.acc-no-anim *, body.acc-no-anim *::before, body.acc-no-anim *::after {
+      animation: none !important;
+      transition: none !important;
+    }
+    body.acc-large-cursor, body.acc-large-cursor * { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M8 4l16 12-7 1 4 8-3 1-4-8-6 5z' fill='black' stroke='white' stroke-width='2'/%3E%3C/svg%3E") 4 4, auto !important; }
+
+    @media (max-width: 480px) {
+      .acc-btn { width: 38px; height: 38px; font-size: 18px; }
+      .acc-panel { width: 280px; }
+      .acc-panel.open { right: 38px; }
+    }
+
     /* ─── Mobile ─────────────────────────────────────────── */
     /* Desktop-only line break in hero subtext */
     .br-desktop { display: none; }
@@ -1246,6 +1456,13 @@
                 <option value="אחר">אחר</option>
               </select>
             </div>
+            <!-- Consent checkbox -->
+            <div class="form-consent">
+              <input type="checkbox" id="consent" name="consent" required />
+              <label for="consent">
+                קראתי ואני מסכים/ה ל<a href="/terms" target="_blank">תקנון</a> ול<a href="/privacy" target="_blank">מדיניות הפרטיות</a>, ומאשר/ת קבלת עדכונים ותקשורת שיווקית מהחברה.
+              </label>
+            </div>
             <!-- CRO #5: Better submit button copy -->
             <button type="submit" class="btn btn-primary form-submit" id="submitBtn">קבלו הצעת מחיר חינם ←</button>
             <!-- CRO #8: Privacy note -->
@@ -1270,8 +1487,93 @@
         שלחו לנו וואטסאפ
       </a>
     </div>
-    <div style="margin-top:8px;">© 2026 ספידקליין. כל הזכויות שמורות.</div>
+    <div style="margin-top:16px;display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap;">
+      <a href="/terms" style="color:rgba(255,255,255,.5);font-size:13px;text-decoration:underline;text-underline-offset:3px;" target="_blank">תקנון ותנאי שימוש</a>
+      <span style="color:rgba(255,255,255,.2);">|</span>
+      <a href="/privacy" style="color:rgba(255,255,255,.5);font-size:13px;text-decoration:underline;text-underline-offset:3px;" target="_blank">מדיניות פרטיות</a>
+      <span style="color:rgba(255,255,255,.2);">|</span>
+      <a href="/accessibility" style="color:rgba(255,255,255,.5);font-size:13px;text-decoration:underline;text-underline-offset:3px;" target="_blank">הצהרת נגישות</a>
+    </div>
+    <div style="margin-top:10px;font-size:12px;">© 2026 ספידקליין. כל הזכויות שמורות.</div>
   </footer>
+
+  <!-- Accessibility Widget -->
+  <button class="acc-btn" id="accBtn" aria-label="פתח תפריט נגישות" aria-expanded="false">♿</button>
+  <div class="acc-panel" id="accPanel" role="region" aria-label="אפשרויות נגישות">
+    <div class="acc-panel-header">
+      <h3>הגדרות נגישות</h3>
+      <button class="acc-panel-close" id="accClose" aria-label="סגור">✕</button>
+    </div>
+
+    <!-- Font size -->
+    <div class="acc-option">
+      <div class="acc-option-label">
+        <span class="acc-opt-icon">🔤</span> גודל טקסט
+      </div>
+      <div class="acc-font-ctrl">
+        <button class="acc-font-btn" id="accFontDec" aria-label="הקטן טקסט">−</button>
+        <span class="acc-font-val" id="accFontVal">100%</span>
+        <button class="acc-font-btn" id="accFontInc" aria-label="הגדל טקסט">+</button>
+      </div>
+    </div>
+
+    <!-- High contrast -->
+    <div class="acc-option">
+      <label class="acc-option-label" for="accContrast">
+        <span class="acc-opt-icon">🌗</span> ניגודיות גבוהה
+      </label>
+      <label class="acc-toggle">
+        <input type="checkbox" id="accContrast" />
+        <span class="acc-slider"></span>
+      </label>
+    </div>
+
+    <!-- Grayscale -->
+    <div class="acc-option">
+      <label class="acc-option-label" for="accGray">
+        <span class="acc-opt-icon">🩶</span> גוונים אפורים
+      </label>
+      <label class="acc-toggle">
+        <input type="checkbox" id="accGray" />
+        <span class="acc-slider"></span>
+      </label>
+    </div>
+
+    <!-- Highlight links -->
+    <div class="acc-option">
+      <label class="acc-option-label" for="accLinks">
+        <span class="acc-opt-icon">🔗</span> הדגש קישורים
+      </label>
+      <label class="acc-toggle">
+        <input type="checkbox" id="accLinks" />
+        <span class="acc-slider"></span>
+      </label>
+    </div>
+
+    <!-- Stop animations -->
+    <div class="acc-option">
+      <label class="acc-option-label" for="accAnim">
+        <span class="acc-opt-icon">⏸️</span> עצור אנימציות
+      </label>
+      <label class="acc-toggle">
+        <input type="checkbox" id="accAnim" />
+        <span class="acc-slider"></span>
+      </label>
+    </div>
+
+    <!-- Large cursor -->
+    <div class="acc-option">
+      <label class="acc-option-label" for="accCursor">
+        <span class="acc-opt-icon">🖱️</span> סמן גדול
+      </label>
+      <label class="acc-toggle">
+        <input type="checkbox" id="accCursor" />
+        <span class="acc-slider"></span>
+      </label>
+    </div>
+
+    <button class="acc-reset" id="accReset">↺ אפס הכל</button>
+  </div>
 
   <!-- #2: Viewers Badge -->
   <div class="viewers-badge" id="viewersBadge" aria-live="polite">
@@ -1384,6 +1686,7 @@
         phone:        data.phone   || null,
         service:      data.service || null,
         city:         data.city    || null,
+        consent:      data.consent === 'on' ? true : false,
         form_source:  'contactForm',
         page_url:     window.location.href,
         ...utmData,
@@ -1424,6 +1727,89 @@
         }, 3000);
       }
     });
+
+    // ── Accessibility Widget ───────────────────────────────
+    (function () {
+      const btn      = document.getElementById('accBtn');
+      const panel    = document.getElementById('accPanel');
+      const closeBtn = document.getElementById('accClose');
+      const body     = document.body;
+
+      // State
+      let fontLevel = 0; // -2 to +4, each step = 10%
+      const MAX_FONT = 4, MIN_FONT = -2;
+
+      function togglePanel(open) {
+        panel.classList.toggle('open', open);
+        btn.setAttribute('aria-expanded', open);
+      }
+
+      btn.addEventListener('click', () => togglePanel(!panel.classList.contains('open')));
+      closeBtn.addEventListener('click', () => togglePanel(false));
+
+      // Close when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!panel.contains(e.target) && e.target !== btn) togglePanel(false);
+      });
+
+      // Font size
+      function applyFont() {
+        const pct = 100 + fontLevel * 10;
+        document.documentElement.style.fontSize = pct + '%';
+        document.getElementById('accFontVal').textContent = pct + '%';
+        save('accFont', fontLevel);
+      }
+      document.getElementById('accFontInc').addEventListener('click', () => {
+        if (fontLevel < MAX_FONT) { fontLevel++; applyFont(); }
+      });
+      document.getElementById('accFontDec').addEventListener('click', () => {
+        if (fontLevel > MIN_FONT) { fontLevel--; applyFont(); }
+      });
+
+      // Toggles
+      function makeToggle(id, cls, key) {
+        const el = document.getElementById(id);
+        el.addEventListener('change', () => {
+          body.classList.toggle(cls, el.checked);
+          save(key, el.checked);
+        });
+        return el;
+      }
+      const tContrast = makeToggle('accContrast', 'acc-high-contrast', 'accContrast');
+      const tGray     = makeToggle('accGray',     'acc-grayscale',      'accGray');
+      const tLinks    = makeToggle('accLinks',    'acc-highlight-links','accLinks');
+      const tAnim     = makeToggle('accAnim',     'acc-no-anim',        'accAnim');
+      const tCursor   = makeToggle('accCursor',   'acc-large-cursor',   'accCursor');
+
+      // Reset
+      document.getElementById('accReset').addEventListener('click', () => {
+        fontLevel = 0; applyFont();
+        [tContrast, tGray, tLinks, tAnim, tCursor].forEach(t => {
+          t.checked = false; t.dispatchEvent(new Event('change'));
+        });
+        localStorage.removeItem('accPrefs');
+      });
+
+      // Persist to localStorage
+      function save(k, v) {
+        try {
+          const prefs = JSON.parse(localStorage.getItem('accPrefs') || '{}');
+          prefs[k] = v;
+          localStorage.setItem('accPrefs', JSON.stringify(prefs));
+        } catch {}
+      }
+
+      // Restore on load
+      try {
+        const prefs = JSON.parse(localStorage.getItem('accPrefs') || '{}');
+        if (prefs.accFont)     { fontLevel = prefs.accFont; applyFont(); }
+        if (prefs.accContrast) { tContrast.checked = true; body.classList.add('acc-high-contrast'); }
+        if (prefs.accGray)     { tGray.checked     = true; body.classList.add('acc-grayscale'); }
+        if (prefs.accLinks)    { tLinks.checked    = true; body.classList.add('acc-highlight-links'); }
+        if (prefs.accAnim)     { tAnim.checked     = true; body.classList.add('acc-no-anim'); }
+        if (prefs.accCursor)   { tCursor.checked   = true; body.classList.add('acc-large-cursor'); }
+      } catch {}
+    })();
 
     // ── #2: Viewers Badge ──────────────────────────────────
     (function () {
