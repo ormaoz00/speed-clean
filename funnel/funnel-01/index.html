@@ -546,6 +546,272 @@
       padding: 12px 28px;
     }
 
+    /* ─── Viewers Badge (#2) ─────────────────────────────── */
+    .viewers-badge {
+      position: fixed;
+      bottom: 90px;
+      left: 24px;
+      z-index: 199;
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 100px;
+      padding: 7px 14px 7px 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #334155;
+      box-shadow: 0 2px 14px rgba(0,0,0,.09);
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity .45s ease, transform .45s ease;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+    .viewers-badge.visible { opacity: 1; transform: none; }
+    .viewers-dot {
+      width: 8px;
+      height: 8px;
+      background: #22c55e;
+      border-radius: 50%;
+      flex-shrink: 0;
+      box-shadow: 0 0 0 0 rgba(34,197,94,.5);
+      animation: pulse-green 2s ease-in-out infinite;
+    }
+    @keyframes pulse-green {
+      0%   { box-shadow: 0 0 0 0 rgba(34,197,94,.5); }
+      70%  { box-shadow: 0 0 0 6px rgba(34,197,94,0); }
+      100% { box-shadow: 0 0 0 0 rgba(34,197,94,0); }
+    }
+
+    /* ─── Chat Bubble (#4) ────────────────────────────────── */
+    .chat-widget {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 200;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 10px;
+    }
+    .chat-bubble-msg {
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 18px 4px 18px 18px;
+      padding: 14px 18px;
+      max-width: 230px;
+      font-size: 14px;
+      font-weight: 500;
+      color: #1e293b;
+      line-height: 1.6;
+      box-shadow: 0 6px 24px rgba(0,0,0,.11);
+      position: relative;
+      opacity: 0;
+      transform: translateY(12px) scale(.96);
+      transition: opacity .35s ease, transform .35s ease;
+      pointer-events: none;
+    }
+    .chat-bubble-msg.visible { opacity: 1; transform: none; pointer-events: auto; }
+    .chat-close-btn {
+      position: absolute;
+      top: -9px;
+      left: -9px;
+      width: 22px;
+      height: 22px;
+      background: #94a3b8;
+      color: #fff;
+      border: 2px solid #fff;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background .2s;
+      line-height: 1;
+    }
+    .chat-close-btn:hover { background: #64748b; }
+    .chat-wa-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 10px;
+      color: var(--wa);
+      font-weight: 700;
+      font-size: 13px;
+    }
+    .chat-trigger-wrap { position: relative; }
+    .chat-trigger {
+      width: 52px;
+      height: 52px;
+      background: #1e293b;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 18px rgba(0,0,0,.20);
+      transition: transform .2s, box-shadow .2s;
+      color: #fff;
+    }
+    .chat-trigger:hover { transform: scale(1.08); box-shadow: 0 6px 24px rgba(0,0,0,.28); }
+    .chat-notif-dot {
+      position: absolute;
+      top: 1px;
+      right: 1px;
+      width: 11px;
+      height: 11px;
+      background: #ef4444;
+      border: 2px solid #fff;
+      border-radius: 50%;
+      animation: pulse-scale 1.6s ease-in-out infinite;
+    }
+    @keyframes pulse-scale {
+      0%, 100% { transform: scale(1); }
+      50%       { transform: scale(1.3); }
+    }
+
+    /* ─── Exit Intent Popup (#5) ──────────────────────────── */
+    .exit-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15,23,42,.50);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .3s ease;
+    }
+    .exit-overlay.open { opacity: 1; pointer-events: auto; }
+    .exit-modal {
+      background: #fff;
+      border-radius: 24px;
+      padding: 44px 36px 36px;
+      max-width: 420px;
+      width: 100%;
+      position: relative;
+      text-align: center;
+      transform: translateY(24px) scale(.97);
+      transition: transform .35s ease;
+      box-shadow: 0 24px 64px rgba(0,0,0,.18);
+    }
+    .exit-overlay.open .exit-modal { transform: none; }
+    .exit-x {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      width: 30px;
+      height: 30px;
+      background: #f1f5f9;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 14px;
+      color: #64748b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background .2s;
+    }
+    .exit-x:hover { background: #e2e8f0; color: #334155; }
+    .exit-icon-wrap {
+      width: 60px;
+      height: 60px;
+      background: #f0f9ff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 18px;
+    }
+    .exit-modal h3 {
+      font-size: 22px;
+      font-weight: 800;
+      color: #0f172a;
+      line-height: 1.3;
+      margin-bottom: 8px;
+    }
+    .exit-modal > p {
+      font-size: 15px;
+      color: #64748b;
+      line-height: 1.65;
+      margin-bottom: 26px;
+    }
+    .exit-btns {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .exit-btns .btn {
+      flex: 1;
+      justify-content: center;
+      font-size: 15px;
+      padding: 13px 12px;
+      border-radius: 10px;
+    }
+    .exit-divider {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #94a3b8;
+      font-size: 12px;
+      font-weight: 500;
+      margin-bottom: 16px;
+    }
+    .exit-divider::before, .exit-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #e2e8f0;
+    }
+    .exit-form-row {
+      display: flex;
+      gap: 8px;
+    }
+    .exit-form-row input {
+      flex: 1;
+      padding: 12px 14px;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 14px;
+      color: #0f172a;
+      outline: none;
+      transition: border-color .2s;
+      text-align: right;
+    }
+    .exit-form-row input:focus { border-color: var(--accent); }
+    .exit-form-row button {
+      padding: 12px 18px;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background .2s;
+    }
+    .exit-form-row button:hover { background: var(--accent-dark); }
+    .exit-form-note {
+      font-size: 12px;
+      color: #94a3b8;
+      margin-top: 10px;
+    }
+    @media (max-width: 480px) {
+      .exit-modal { padding: 40px 24px 28px; }
+      .exit-btns { flex-direction: column; }
+    }
+
     /* ─── Floating WhatsApp (CRO #11 — pill with text) ───── */
     .wa-float {
       position: fixed;
@@ -914,6 +1180,72 @@
                 <option>אחר</option>
               </select>
             </div>
+            <div class="form-group">
+              <label for="city">עיר <span style="color:var(--muted);font-weight:400;">(לא חובה)</span></label>
+              <select id="city" name="city">
+                <option value="">בחרו עיר</option>
+                <optgroup label="גוש דן והמרכז">
+                  <option>תל אביב-יפו</option>
+                  <option>רמת גן</option>
+                  <option>גבעתיים</option>
+                  <option>בני ברק</option>
+                  <option>פתח תקווה</option>
+                  <option>ראשון לציון</option>
+                  <option>חולון</option>
+                  <option>בת ים</option>
+                  <option>אור יהודה</option>
+                  <option>קרית אונו</option>
+                  <option>אבן יהודה</option>
+                  <option>לוד</option>
+                  <option>רמלה</option>
+                  <option>מודיעין-מכבים-רעות</option>
+                  <option>ראש העין</option>
+                  <option>יהוד-מונוסון</option>
+                  <option>אלעד</option>
+                </optgroup>
+                <optgroup label="השרון">
+                  <option>הרצליה</option>
+                  <option>רעננה</option>
+                  <option>כפר סבא</option>
+                  <option>נתניה</option>
+                  <option>הוד השרון</option>
+                  <option>רמת השרון</option>
+                  <option>כפר יונה</option>
+                  <option>טירת כרמל</option>
+                  <option>עמק חפר</option>
+                  <option>חדרה</option>
+                  <option>זכרון יעקב</option>
+                  <option>בנימינה-גבעת עדה</option>
+                </optgroup>
+                <optgroup label="שפלה ודרום">
+                  <option>רחובות</option>
+                  <option>נס ציונה</option>
+                  <option>גדרה</option>
+                  <option>יבנה</option>
+                  <option>אשדוד</option>
+                  <option>אשקלון</option>
+                  <option>קריית מלאכי</option>
+                  <option>באר שבע</option>
+                </optgroup>
+                <optgroup label="ירושלים והסביבה">
+                  <option>ירושלים</option>
+                  <option>בית שמש</option>
+                  <option>מעלה אדומים</option>
+                  <option>גבעת זאב</option>
+                </optgroup>
+                <optgroup label="צפון">
+                  <option>חיפה</option>
+                  <option>קריות</option>
+                  <option>עכו</option>
+                  <option>נהריה</option>
+                  <option>עפולה</option>
+                  <option>נצרת</option>
+                  <option>טבריה</option>
+                  <option>צפת</option>
+                </optgroup>
+                <option value="אחר">אחר</option>
+              </select>
+            </div>
             <!-- CRO #5: Better submit button copy -->
             <button type="submit" class="btn btn-primary form-submit" id="submitBtn">קבלו הצעת מחיר חינם ←</button>
             <!-- CRO #8: Privacy note -->
@@ -940,6 +1272,60 @@
     </div>
     <div style="margin-top:8px;">© 2026 ספידקליין. כל הזכויות שמורות.</div>
   </footer>
+
+  <!-- #2: Viewers Badge -->
+  <div class="viewers-badge" id="viewersBadge" aria-live="polite">
+    <span class="viewers-dot"></span>
+    <span id="viewersCount">4</span> צופים בדף עכשיו
+  </div>
+
+  <!-- #4: Chat Bubble -->
+  <div class="chat-widget" id="chatWidget">
+    <div class="chat-bubble-msg" id="chatMsg">
+      <button class="chat-close-btn" id="chatClose" aria-label="סגור">✕</button>
+      שלום! יש לכם שאלה על ניקוי מזגנים? 😊
+      <a href="https://wa.me/972557114178?text=הגעתי דרך האתר, יש לי שאלה" target="_blank" rel="noopener" class="chat-wa-link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        דברו איתנו בוואטסאפ
+      </a>
+    </div>
+    <div class="chat-trigger-wrap">
+      <button class="chat-trigger" id="chatTrigger" aria-label="פתחו צ'אט">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+      </button>
+      <span class="chat-notif-dot" id="chatDot"></span>
+    </div>
+  </div>
+
+  <!-- #5: Exit Intent Popup -->
+  <div class="exit-overlay" id="exitOverlay" role="dialog" aria-modal="true">
+    <div class="exit-modal">
+      <button class="exit-x" id="exitClose" aria-label="סגור">✕</button>
+      <div class="exit-icon-wrap">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#0EA5E9" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.66A2 2 0 012 .94h3a2 2 0 012 1.72c.13 1 .39 1.98.73 2.93a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.21-1.21a2 2 0 012.11-.45c.95.34 1.93.6 2.93.73A2 2 0 0122 16.92z"/></svg>
+      </div>
+      <h3>דברו עם טכנאי<br />מהצוות שלנו</h3>
+      <p>קבלו מידע, מחירים ותיאום ישירות —<br />בלי המתנה, בלי בירוקרטיה.</p>
+      <div class="exit-btns">
+        <a href="tel:0557114178" class="btn btn-primary">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.66A2 2 0 012 .94h3a2 2 0 012 1.72c.13 1 .39 1.98.73 2.93a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.21-1.21a2 2 0 012.11-.45c.95.34 1.93.6 2.93.73A2 2 0 0122 16.92z"/></svg>
+          חייגו עכשיו
+        </a>
+        <a href="https://wa.me/972557114178?text=הגעתי דרך האתר, אשמח לדבר עם טכנאי" class="btn btn-wa" target="_blank" rel="noopener">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          וואטסאפ
+        </a>
+      </div>
+      <div class="exit-divider">או השאירו פרטים ונחזור אליכם</div>
+      <form id="exitForm">
+        <div class="exit-form-row">
+          <input type="tel" id="exitPhone" placeholder="מספר טלפון" required />
+          <button type="submit" id="exitSubmitBtn">התקשרו אלי</button>
+        </div>
+        <p class="exit-form-note">נחזור אליכם תוך 30 דקות בשעות הפעילות</p>
+      </form>
+    </div>
+  </div>
 
   <!-- CRO #11: Floating WhatsApp — pill with label text -->
   <a href="https://wa.me/972557114178?text=הגעתי דרך האתר, אז אשמח לתאם ביקור" class="wa-float" target="_blank" rel="noopener" aria-label="שלחו וואטסאפ">
@@ -997,6 +1383,7 @@
         name:         data.name    || null,
         phone:        data.phone   || null,
         service:      data.service || null,
+        city:         data.city    || null,
         form_source:  'contactForm',
         page_url:     window.location.href,
         ...utmData,
@@ -1037,6 +1424,112 @@
         }, 3000);
       }
     });
+
+    // ── #2: Viewers Badge ──────────────────────────────────
+    (function () {
+      const badge    = document.getElementById('viewersBadge');
+      const countEl  = document.getElementById('viewersCount');
+      let count = Math.floor(Math.random() * 4) + 2; // 2–5
+      countEl.textContent = count;
+      // Fade in after 2.5s
+      setTimeout(() => badge.classList.add('visible'), 2500);
+      // Drift up/down every 25–40s
+      function drift() {
+        const delta = Math.random() < .5 ? 1 : -1;
+        count = Math.min(7, Math.max(2, count + delta));
+        countEl.textContent = count;
+        setTimeout(drift, Math.random() * 15000 + 25000);
+      }
+      setTimeout(drift, Math.random() * 15000 + 25000);
+    })();
+
+    // ── #4: Chat Bubble ────────────────────────────────────
+    (function () {
+      const msg     = document.getElementById('chatMsg');
+      const trigger = document.getElementById('chatTrigger');
+      const closeBtn= document.getElementById('chatClose');
+      const dot     = document.getElementById('chatDot');
+      let opened = false;
+      function openMsg() {
+        msg.classList.add('visible');
+        opened = true;
+      }
+      function closeMsg() {
+        msg.classList.remove('visible');
+        dot.style.display = 'none';
+      }
+      // Auto-open after 8s
+      setTimeout(() => { if (!opened) openMsg(); }, 8000);
+      trigger.addEventListener('click', () => {
+        if (msg.classList.contains('visible')) {
+          closeMsg();
+        } else {
+          openMsg();
+          dot.style.display = 'none';
+        }
+      });
+      closeBtn.addEventListener('click', (e) => { e.stopPropagation(); closeMsg(); });
+    })();
+
+    // ── #5: Exit Intent Popup ──────────────────────────────
+    (function () {
+      const overlay = document.getElementById('exitOverlay');
+      const closeBtn= document.getElementById('exitClose');
+      const form    = document.getElementById('exitForm');
+      let shown = false;
+
+      function showExit() {
+        if (shown || sessionStorage.getItem('exitShown')) return;
+        shown = true;
+        sessionStorage.setItem('exitShown', '1');
+        overlay.classList.add('open');
+      }
+      function hideExit() { overlay.classList.remove('open'); }
+
+      // Desktop — mouse leaves top of viewport
+      document.addEventListener('mouseleave', (e) => {
+        if (e.clientY < 20) showExit();
+      });
+      // Mobile — scroll-up after 15s of browsing
+      setTimeout(() => {
+        let lastY = window.scrollY;
+        window.addEventListener('scroll', () => {
+          const y = window.scrollY;
+          if (y < lastY - 80 && y > 300) showExit();
+          lastY = y;
+        }, { passive: true });
+      }, 15000);
+
+      closeBtn.addEventListener('click', hideExit);
+      overlay.addEventListener('click', (e) => { if (e.target === overlay) hideExit(); });
+
+      // Exit form submit
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = document.getElementById('exitSubmitBtn');
+        const orig = btn.textContent;
+        btn.textContent = 'שולח...';
+        btn.disabled = true;
+        const lead = {
+          phone: document.getElementById('exitPhone').value,
+          form_source: 'exitPopup',
+          page_url: window.location.href,
+          ...utmData,
+        };
+        try {
+          const { error } = await sb.from('leads').insert([lead]);
+          if (error) throw error;
+          fetch('/api/webhook', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(lead) }).catch(() => {});
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({ event: 'lead_submitted', form_id: 'exitPopup' });
+          hideExit();
+          window.location.href = '/thank-you/';
+        } catch {
+          btn.textContent = 'שגיאה, נסו שוב';
+          setTimeout(() => { btn.textContent = orig; btn.disabled = false; }, 2500);
+        }
+      });
+    })();
 
     // Scroll reveal
     const observer = new IntersectionObserver(entries => {
