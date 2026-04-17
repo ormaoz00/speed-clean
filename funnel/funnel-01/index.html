@@ -208,14 +208,19 @@
     .hero-label {
       display: inline-flex;
       align-items: center;
+      flex-wrap: wrap;
+      justify-content: center;
       gap: 6px;
       font-size: 14px;
       font-weight: 500;
       color: var(--accent-dark);
       background: var(--accent-light);
-      padding: 6px 16px;
+      padding: 8px 18px;
       border-radius: 100px;
       margin-bottom: 28px;
+      text-align: center;
+      max-width: 90vw;
+      line-height: 1.5;
     }
     .hero h1 {
       font-size: clamp(36px, 6vw, 62px);
@@ -554,7 +559,10 @@
   <!-- Hero -->
   <section class="hero" id="hero">
     <div class="container">
-      <div class="hero-label reveal">⭐ 4.9 בגוגל · מעל 3,000 מזגנים נוקו</div>
+      <div class="hero-label reveal">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        צוות הטכנאים שלנו מדורג 9.14/10 על סמך 260+ ביקורות מאומתות
+      </div>
       <h1 class="reveal">המזגן שלכם לא נוקה<br /><em>מספיק זמן.</em></h1>
       <p class="reveal">ניקוי וחיטוי מקצועי בשרון והמרכז – שירות מהיר, מחירים הוגנים, תוצאות שמרגישים.</p>
       <p class="hero-trust reveal"><strong>אחריות מלאה</strong> · חומרים בטוחים לילדים · מגיעים תוך 24 שעות</p>
