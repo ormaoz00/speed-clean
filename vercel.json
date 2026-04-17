@@ -2,6 +2,8 @@
   "rewrites": [
     { "source": "/", "destination": "/funnel/funnel-01/" },
     { "source": "/thank-you", "destination": "/funnel/funnel-01/thank-you.html" },
-    { "source": "/thank-you/", "destination": "/funnel/funnel-01/thank-you.html" }
+    { "source": "/thank-you/", "destination": "/funnel/funnel-01/thank-you.html" },
+    { "source": "/v1", "destination": "/funnel/v1/" },
+    { "source": "/v1/", "destination": "/funnel/v1/" }
   ]
 }
