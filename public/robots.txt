@@ -1,0 +1,14 @@
+# robots.txt — lp.speed-clean.co.il
+# Generated: April 2026
+
+User-agent: *
+Allow: /
+Allow: /v1
+
+# No value in indexing these
+Disallow: /api/
+Disallow: /thank-you
+Disallow: /thank-you/
+
+# Sitemap
+Sitemap: https://lp.speed-clean.co.il/sitemap.xml

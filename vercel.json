@@ -3,15 +3,49 @@
     { "source": "/", "destination": "/v1", "permanent": true }
   ],
   "rewrites": [
-    { "source": "/v1",            "destination": "/funnel/funnel-01/" },
-    { "source": "/v1/",           "destination": "/funnel/funnel-01/" },
-    { "source": "/thank-you",     "destination": "/funnel/funnel-01/thank-you.html" },
-    { "source": "/thank-you/",    "destination": "/funnel/funnel-01/thank-you.html" },
-    { "source": "/terms",         "destination": "/funnel/funnel-01/terms.html" },
-    { "source": "/terms/",        "destination": "/funnel/funnel-01/terms.html" },
-    { "source": "/privacy",       "destination": "/funnel/funnel-01/privacy.html" },
-    { "source": "/privacy/",      "destination": "/funnel/funnel-01/privacy.html" },
-    { "source": "/accessibility", "destination": "/funnel/funnel-01/accessibility.html" },
-    { "source": "/accessibility/","destination": "/funnel/funnel-01/accessibility.html" }
+    { "source": "/v1",              "destination": "/funnel/funnel-01/" },
+    { "source": "/v1/",             "destination": "/funnel/funnel-01/" },
+    { "source": "/thank-you",       "destination": "/funnel/funnel-01/thank-you.html" },
+    { "source": "/thank-you/",      "destination": "/funnel/funnel-01/thank-you.html" },
+    { "source": "/terms",           "destination": "/funnel/funnel-01/terms.html" },
+    { "source": "/terms/",          "destination": "/funnel/funnel-01/terms.html" },
+    { "source": "/privacy",         "destination": "/funnel/funnel-01/privacy.html" },
+    { "source": "/privacy/",        "destination": "/funnel/funnel-01/privacy.html" },
+    { "source": "/accessibility",   "destination": "/funnel/funnel-01/accessibility.html" },
+    { "source": "/accessibility/",  "destination": "/funnel/funnel-01/accessibility.html" },
+    { "source": "/robots.txt",      "destination": "/public/robots.txt" },
+    { "source": "/sitemap.xml",     "destination": "/public/sitemap.xml" }
+  ],
+  "headers": [
+    {
+      "source": "/v1(.*)",
+      "headers": [
+        { "key": "Cache-Control",               "value": "public, max-age=3600, stale-while-revalidate=86400" },
+        { "key": "X-Content-Type-Options",      "value": "nosniff" },
+        { "key": "X-Frame-Options",             "value": "SAMEORIGIN" },
+        { "key": "Referrer-Policy",             "value": "strict-origin-when-cross-origin" }
+      ]
+    },
+    {
+      "source": "/(thank-you|terms|privacy|accessibility)(.*)",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "noindex, nofollow" },
+        { "key": "Cache-Control", "value": "no-store" }
+      ]
+    },
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "noindex, nofollow" },
+        { "key": "Cache-Control", "value": "no-store" }
+      ]
+    },
+    {
+      "source": "/(sitemap\\.xml|robots\\.txt)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=86400" },
+        { "key": "Content-Type",  "value": "text/xml; charset=utf-8" }
+      ]
+    }
   ]
 }
