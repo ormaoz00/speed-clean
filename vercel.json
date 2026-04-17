@@ -3,8 +3,8 @@
     { "source": "/", "destination": "/v1", "permanent": true }
   ],
   "rewrites": [
-    { "source": "/v1", "destination": "/funnel/v1/" },
-    { "source": "/v1/", "destination": "/funnel/v1/" },
+    { "source": "/v1", "destination": "/funnel/funnel-01/" },
+    { "source": "/v1/", "destination": "/funnel/funnel-01/" },
     { "source": "/thank-you", "destination": "/funnel/funnel-01/thank-you.html" },
     { "source": "/thank-you/", "destination": "/funnel/funnel-01/thank-you.html" }
   ]
