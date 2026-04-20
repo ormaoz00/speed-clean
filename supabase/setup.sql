@@ -16,7 +16,11 @@ CREATE TABLE IF NOT EXISTS leads (
   -- Service details
   service       TEXT,
   units         TEXT,
+  city          TEXT,
   message       TEXT,
+
+  -- Consent
+  consent       BOOLEAN DEFAULT false,
 
   -- UTM tracking
   utm_source    TEXT,
