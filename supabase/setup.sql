@@ -16,6 +16,7 @@ CREATE TABLE IF NOT EXISTS leads (
   -- Service details
   service       TEXT,
   units         TEXT,
+  city          TEXT,
   message       TEXT,
 
   -- UTM tracking
