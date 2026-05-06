@@ -14,12 +14,33 @@
     { "source": "/privacy/",        "destination": "/funnel/funnel-01/privacy.html" },
     { "source": "/accessibility",   "destination": "/funnel/funnel-01/accessibility.html" },
     { "source": "/accessibility/",  "destination": "/funnel/funnel-01/accessibility.html" },
+
+    { "source": "/v2",              "destination": "/funnel/funnel-02/index.html" },
+    { "source": "/v2/",             "destination": "/funnel/funnel-02/index.html" },
+    { "source": "/v2/thank-you",    "destination": "/funnel/funnel-02/thank-you.html" },
+    { "source": "/v2/thank-you/",   "destination": "/funnel/funnel-02/thank-you.html" },
+    { "source": "/v2/terms",        "destination": "/funnel/funnel-01/terms.html" },
+    { "source": "/v2/terms/",       "destination": "/funnel/funnel-01/terms.html" },
+    { "source": "/v2/privacy",      "destination": "/funnel/funnel-01/privacy.html" },
+    { "source": "/v2/privacy/",     "destination": "/funnel/funnel-01/privacy.html" },
+    { "source": "/v2/accessibility","destination": "/funnel/funnel-01/accessibility.html" },
+    { "source": "/v2/accessibility/","destination": "/funnel/funnel-01/accessibility.html" },
+
     { "source": "/robots.txt",      "destination": "/public/robots.txt" },
     { "source": "/sitemap.xml",     "destination": "/public/sitemap.xml" }
   ],
   "headers": [
     {
       "source": "/v1(.*)",
+      "headers": [
+        { "key": "Cache-Control",               "value": "public, max-age=3600, stale-while-revalidate=86400" },
+        { "key": "X-Content-Type-Options",      "value": "nosniff" },
+        { "key": "X-Frame-Options",             "value": "SAMEORIGIN" },
+        { "key": "Referrer-Policy",             "value": "strict-origin-when-cross-origin" }
+      ]
+    },
+    {
+      "source": "/v2(.*)",
       "headers": [
         { "key": "Cache-Control",               "value": "public, max-age=3600, stale-while-revalidate=86400" },
         { "key": "X-Content-Type-Options",      "value": "nosniff" },
