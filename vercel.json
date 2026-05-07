@@ -17,6 +17,7 @@
 
     { "source": "/v2",              "destination": "/funnel/funnel-02/index.html" },
     { "source": "/v2/",             "destination": "/funnel/funnel-02/index.html" },
+    { "source": "/v2/script.js",    "destination": "/funnel/funnel-02/script.js" },
     { "source": "/v2/thank-you",    "destination": "/funnel/funnel-02/thank-you.html" },
     { "source": "/v2/thank-you/",   "destination": "/funnel/funnel-02/thank-you.html" },
     { "source": "/v2/terms",        "destination": "/funnel/funnel-01/terms.html" },
