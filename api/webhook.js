@@ -24,36 +24,24 @@ export default async function handler(req, res) {
   }
 
   try {
-    const {
-      name,
-      phone,
-      email,
-      service,
-      units,
-      message,
-      utm_source,
-      utm_medium,
-      utm_campaign,
-      utm_term,
-      utm_content,
-      page_url,
-      form_source,
-    } = req.body;
-
     const payload = {
-      name:         name         || null,
-      phone:        phone        || null,
-      email:        email        || null,
-      service:      service      || null,
-      units:        units        || null,
-      message:      message      || null,
-      utm_source:   utm_source   || null,
-      utm_medium:   utm_medium   || null,
-      utm_campaign: utm_campaign || null,
-      utm_term:     utm_term     || null,
-      utm_content:  utm_content  || null,
-      page_url:     page_url     || null,
-      form_source:  form_source  || null,
+      name:         req.body.name         || null,
+      phone:        req.body.phone        || null,
+      email:        req.body.email        || null,
+      service:      req.body.service      || null,
+      units:        req.body.units        || null,
+      message:      req.body.message      || null,
+      city:         req.body.city         || null,
+      consent:      req.body.consent      || false,
+      lead_type:    req.body.lead_type    || null,
+      funnel:       req.body.funnel       || null,
+      utm_source:   req.body.utm_source   || null,
+      utm_medium:   req.body.utm_medium   || null,
+      utm_campaign: req.body.utm_campaign || null,
+      utm_term:     req.body.utm_term     || null,
+      utm_content:  req.body.utm_content  || null,
+      page_url:     req.body.page_url     || null,
+      form_source:  req.body.form_source  || null,
       submitted_at: new Date().toISOString(),
     };
 
