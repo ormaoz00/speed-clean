@@ -109,15 +109,15 @@
       </svg>
     </div>
 
-    <h1>תודה רבה!<br />הפנייה התקבלה בהצלחה</h1>
+    <h1 id="tyTitle">תודה רבה!<br />הפנייה התקבלה בהצלחה</h1>
 
-    <p class="sub">הצוות של ספיד קלין קיבל את הפרטים שלכם ויחזור אליכם בהקדם לתיאום מועד הניקוי.</p>
+    <p class="sub" id="tySub">הצוות של ספיד קלין קיבל את הפרטים שלכם ויחזור אליכם בהקדם לתיאום מועד הניקוי.</p>
 
     <div class="steps">
       <h3>מה קורה עכשיו?</h3>
       <div class="step">
         <div class="step-num">1</div>
-        <div class="step-text"><strong>נחזור אליכם תוך 30 דקות</strong> בשעות הפעילות (א'–ו', 08:00–19:00)</div>
+        <div class="step-text" id="tyStep1"><strong>נחזור אליכם תוך 30 דקות</strong> בשעות הפעילות (א'–ו', 08:00–19:00)</div>
       </div>
       <div class="step">
         <div class="step-num">2</div>
@@ -131,5 +131,15 @@
 
     <a href="/v2" class="btn-home">חזרה לדף הבית</a>
   </div>
+
+  <script>
+    // Show different message for callback leads
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('type') === 'callback') {
+      document.getElementById('tyTitle').innerHTML = 'תודה רבה!<br />הטכנאי יתקשר אליכם בהקדם';
+      document.getElementById('tySub').textContent = 'קיבלנו את המספר שלכם. טכנאי מהצוות שלנו יחזור אליכם בהקדם האפשרי.';
+      document.getElementById('tyStep1').innerHTML = '<strong>הטכנאי מתקשר אליכם</strong> בהקדם האפשרי (בשעות הפעילות א\'–ו\', 08:00–19:00)';
+    }
+  </script>
 </body>
 </html>

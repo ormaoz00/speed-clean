@@ -1,6 +1,8 @@
 // ============================================
 // Speed Clean — Funnel 02 Scripts
-// Form-only funnel (no direct call / WhatsApp)
+// Lead-capture funnel: all contact goes through forms
+// Two options: "השאירו פרטים" (full form) + "חייגו אליי" (quick callback)
+// Leads → Supabase → Make.com automation → technician WhatsApp/call
 // ============================================
 
 // --- Supabase Config ---
@@ -71,6 +73,7 @@ async function handleFormSubmit(form, btnId, formSource) {
     service:      data.service || null,
     city:         data.city    || null,
     consent:      data.consent === 'on' ? true : false,
+    lead_type:    formSource === 'callbackForm' ? 'callback' : 'lead',
     form_source:  formSource,
     funnel:       'funnel-02',
     page_url:     window.location.href,
@@ -100,7 +103,10 @@ async function handleFormSubmit(form, btnId, formSource) {
     btn.textContent = '✓ נשלח! נחזור אליכם בקרוב';
     btn.style.background = '#10b981';
     form.reset();
-    window.location.href = '/v2/thank-you/';
+    const tyUrl = formSource === 'callbackForm'
+      ? '/v2/thank-you/?type=callback'
+      : '/v2/thank-you/';
+    window.location.href = tyUrl;
   } catch (err) {
     console.error('Supabase insert error:', err);
     btn.textContent = 'שגיאה, נסו שוב';
@@ -124,6 +130,38 @@ document.getElementById('exitForm').addEventListener('submit', (e) => {
   e.preventDefault();
   handleFormSubmit(e.target, 'exitSubmitBtn', 'exitPopup');
 });
+
+// Callback form ("חייגו אליי")
+document.getElementById('callbackForm').addEventListener('submit', (e) => {
+  e.preventDefault();
+  handleFormSubmit(e.target, 'callbackSubmitBtn', 'callbackForm');
+});
+
+// ============================================
+// Callback Popup ("חייגו אליי")
+// ============================================
+function openCallbackPopup() {
+  const overlay = document.getElementById('callbackOverlay');
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  // Focus the phone input for quick entry
+  setTimeout(() => document.getElementById('callbackPhone').focus(), 350);
+}
+
+(function () {
+  const overlay = document.getElementById('callbackOverlay');
+  const closeBtn = document.getElementById('callbackClose');
+
+  function hideCallback() {
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  closeBtn.addEventListener('click', hideCallback);
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) hideCallback();
+  });
+})();
 
 // ============================================
 // Exit Intent Popup
